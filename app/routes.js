@@ -27,5 +27,19 @@ export default function createRoutes() {
         importModules.catch(errorLoading);
       },
     },
+    {
+      path: '/login',
+      name: 'login',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          System.import('./modules/UserAuthentication'),
+        ]);
+        const renderRoute = loadModule(cb);
+        importModules.then(([component]) => {
+          renderRoute(component);
+        });
+        importModules.catch(errorLoading);
+      },
+    },
   ];
 }
