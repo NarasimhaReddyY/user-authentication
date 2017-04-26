@@ -13,13 +13,15 @@ import 'babel-polyfill';
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { applyRouterMiddleware, Router, browserHistory } from 'react-router';
+import { applyRouterMiddleware, Router, browserHistory, Route } from 'react-router';
 import useScroll from 'react-router-scroll';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import configureStore from './store';
 
+import App from './modules/Core/components/main';
+import Homepage from './modules/Home/components/home.js';
 /**
  * Import Main scss file, for global styles
  */
@@ -56,30 +58,15 @@ import { selectLocationState } from './selectors';
 const history = syncHistoryWithStore(browserHistory, store, {
   selectLocationState: selectLocationState(),
 });
-/**
- * Set up the router, wrapping all Routes in the App component
- */
-import App from './modules/Core/components/main';
-import createRoutes from './routes';
-const rootRoute = {
-  component: App,
-  childRoutes: createRoutes(),
-};
-
 
 const render = () => {
   ReactDOM.render(
     <Provider store={store}>
-      <Router
-        history={history}
-        routes={rootRoute}
-        render={
-
-          //  Scroll to top when going to a new page, imitating default browser
-          //  behaviour
-          applyRouterMiddleware(useScroll())
-        }
-      />
+      <Router history={history}>
+        <Route path="/" component={App}>
+          <Route path="/home" component={Homepage} />
+        </Route>
+      </Router>
     </Provider>,
     document.getElementById('app')
   );
