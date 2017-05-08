@@ -3,7 +3,13 @@ import React, { PropTypes } from 'react';
 const Radio = ({ className, name, title, value, checked}) => {
 	return (
 		<div className={className}>
-		  <input type="radio" name={name} value={value} defaultChecked={checked} />{title}
+		  <input
+		    type="radio"
+		    name={name}
+		    value={value}
+		    defaultChecked={checked}
+		  />
+		  {title}
 		</div>
 	);
 };

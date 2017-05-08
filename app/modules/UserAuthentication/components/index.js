@@ -14,7 +14,8 @@ import Input from './Textfield';
 import MultilineInput from './Textarea';
 import Submit from './Submit';
 import Radio from './Radio';
-import Check from './Check'
+import Check from './Check';
+import File from './File.js';
 
 
 /*eslint-disable */
@@ -24,6 +25,7 @@ const Textarea     = HOC(MultilineInput);
 const SubmitButton = HOC(Submit);
 const RadioButton  = HOC(Radio);
 const CheckBox 		 = HOC(Check);
+const FileInput		 = HOC(File);
 
 /*eslint-enable */
 
@@ -32,5 +34,6 @@ export {
   Textarea,
   SubmitButton,
   RadioButton,
-  CheckBox
+  CheckBox,
+  FileInput
 };
