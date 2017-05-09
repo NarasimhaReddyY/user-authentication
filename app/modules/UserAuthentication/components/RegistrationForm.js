@@ -3,10 +3,19 @@ import Formsy from 'formsy-react';
 import { Textfield, SubmitButton, RadioButton } from './index.js';
 
 class RegistrationForm extends Component {
+  constructor(props){
+    super(props);
+    this.resetForm = this.resetForm.bind(this);
+  };
+
+  resetForm(){
+    this.refs.form.reset();
+  }
+
   render(){
     return (
       <div className="registration-form">
-        <Formsy.Form>
+        <Formsy.Form ref="form">
           <Textfield
             className="form-input"
             title="First Name"
@@ -60,8 +69,16 @@ class RegistrationForm extends Component {
           />
 
           <SubmitButton 
+            className="submit-button"
             name="submit"
-            value="SignUp" />
+            value="SignUp"
+          />
+
+          <SubmitButton 
+            name="reset-button"
+            value="Reset"
+            handleOnClick={this.resetForm}
+          />
         </Formsy.Form>
       </div>
     );	

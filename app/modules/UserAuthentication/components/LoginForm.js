@@ -6,7 +6,7 @@ class LoginForm extends Component {
   render(){
   	return(
   		<div className="login-form">
-  		  <Formsy.Form>
+  		  <Formsy.Form ref="form">
           <Textfield
 	  		    className="form-input"
 	  		    name="email"
