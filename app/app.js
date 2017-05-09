@@ -13,15 +13,13 @@ import 'babel-polyfill';
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { applyRouterMiddleware, Router, browserHistory, Route } from 'react-router';
+import { applyRouterMiddleware, Router, browserHistory } from 'react-router';
 import useScroll from 'react-router-scroll';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import configureStore from './store';
-
-import App from './modules/Core/components/main';
-import Homepage from './modules/Home/components/home.js';
+import routes from './routes';
 /**
  * Import Main scss file, for global styles
  */
@@ -63,9 +61,7 @@ const render = () => {
   ReactDOM.render(
     <Provider store={store}>
       <Router history={history}>
-        <Route path="/" component={App}>
-          <Route path="/home" component={Homepage} />
-        </Route>
+        {routes}
       </Router>
     </Provider>,
     document.getElementById('app')
