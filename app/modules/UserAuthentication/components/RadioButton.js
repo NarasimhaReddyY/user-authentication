@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-const Radio = ({ className, name, title, value, checked}) => {
+const RadioButton = ({ className, name, title, value, checked}) => {
 	return (
 		<div className={className}>
 		  <input
@@ -14,7 +14,7 @@ const Radio = ({ className, name, title, value, checked}) => {
 	);
 };
 
-Radio.propTypes = {
+RadioButton.propTypes = {
   className: PropTypes.string,
   name: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
@@ -22,9 +22,9 @@ Radio.propTypes = {
   checked: PropTypes.bool
 };
 
-Radio.defaultProps = {
+RadioButton.defaultProps = {
 	className: '',
 	checked: false
 };
 
-export default Radio;
+export default RadioButton;

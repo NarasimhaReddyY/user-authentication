@@ -12,11 +12,10 @@ import { HOC } from 'formsy-react';
  */
 import Input from './Textfield';
 import MultilineInput from './Textarea';
-import Submit from './Submit';
-import Radio from './Radio';
-import Check from './Check';
+import Submit from './SubmitButton';
+import Radio from './RadioButton';
+import Check from './CheckBox';
 import File from './File.js';
-
 
 /*eslint-disable */
 
@@ -35,5 +34,5 @@ export {
   SubmitButton,
   RadioButton,
   CheckBox,
-  FileInput
+  FileInput,
 };

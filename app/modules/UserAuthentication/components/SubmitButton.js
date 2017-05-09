@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-const Submit = ({ className, name, value }) => {
+const SubmitButton = ({ className, name, value }) => {
 	return (
 		<div className={className}>
 			<input
@@ -12,16 +12,16 @@ const Submit = ({ className, name, value }) => {
 	);
 }
 
-Submit.propTypes = {
+SubmitButton.propTypes = {
 	className: PropTypes.string,
 	name: PropTypes.string.isRequired,
 	value: PropTypes.string,
 };
 
 
-Submit.defaultProps = {
+SubmitButton.defaultProps = {
   className: '',
   value: 'submit',
 };
 
-export default Submit;
+export default SubmitButton;

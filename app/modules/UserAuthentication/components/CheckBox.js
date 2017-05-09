@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-const Check = ({ className, name, title, value, checked}) => {
+const CheckBox= ({ className, name, title, value, checked}) => {
 	return (
 		<div className={className}>
 		  <input
@@ -14,7 +14,7 @@ const Check = ({ className, name, title, value, checked}) => {
 	);
 };
 
-Check.propTypes = {
+CheckBox.propTypes = {
   className: PropTypes.string,
   name: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
@@ -22,9 +22,9 @@ Check.propTypes = {
   checked: PropTypes.bool
 };
 
-Check.defaultProps = {
+CheckBox.defaultProps = {
 	className: '',
 	checked: false
 };
 
-export default Check;
+export default CheckBox;
