@@ -5,10 +5,10 @@ import { Textfield, SubmitButton, RadioButton } from './index.js';
 class RegistrationForm extends Component {
   render(){
     return (
-      <div>
+      <div className="registration-form">
         <Formsy.Form>
           <Textfield
-            className="text-input"
+            className="form-input"
             title="First Name"
             name="firstName"
             type="text"
@@ -16,7 +16,7 @@ class RegistrationForm extends Component {
           />
 
           <Textfield
-            className="text-input"
+            className="form-input"
             title="Last Name"
             name="lastName"
             type="text"
@@ -24,7 +24,7 @@ class RegistrationForm extends Component {
           />
 
           <Textfield
-            className="text-input"
+            className="form-input"
             title="Email"
             name="email"
             type="email"
@@ -34,17 +34,17 @@ class RegistrationForm extends Component {
           />
 
           <Textfield
-            className="text-input"
+            className="form-input"
             title="Phone Number"
             name="phoneNumber"
-            type="number"
+            type="text"
             validations="isNumeric"
             validationError="Enter a valid phone number"
             required
           />
 
           <Textfield
-            className="text-input"
+            className="form-input"
             title="Password"
             name="password"
             type="password"
@@ -52,7 +52,7 @@ class RegistrationForm extends Component {
           />
 
           <Textfield
-            className="text-input"
+            className="form-input"
             title="Confirm Password"
             name="confirmPassword"
             type="password"
