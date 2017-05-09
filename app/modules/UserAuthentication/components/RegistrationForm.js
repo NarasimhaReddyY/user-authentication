@@ -1,21 +1,44 @@
 import React, { Component } from 'react';
 import Formsy from 'formsy-react';
 import { Textfield, SubmitButton, RadioButton } from './index.js';
+import _ from 'lodash';
 
 class RegistrationForm extends Component {
   constructor(props){
     super(props);
-    this.resetForm = this.resetForm.bind(this);
+    this.state = {  
+      validationErrors: {}
+    },
+
+    this.resetForm    = this.resetForm.bind(this);
+    this.validateForm = this.validateForm.bind(this);
   };
 
   resetForm(){
     this.refs.form.reset();
-  }
+  };
+
+  validateForm(formData){
+    let validationErrors = {};
+    const errorMessage = "Should not be empty";
+    
+    _.forEach(formData, (value, key) => {
+      if(_.isEmpty(value)){
+        validationErrors[key] = errorMessage;
+      }
+    });
+
+    this.refs.form.updateInputsWithError(validationErrors);
+  };
 
   render(){
     return (
       <div className="registration-form">
-        <Formsy.Form ref="form">
+        <Formsy.Form
+          ref="form"
+          onInvalidSubmit={this.validateForm}
+          validationErrors={this.state.validationErrors}
+        >
           <Textfield
             className="form-input"
             title="First Name"
