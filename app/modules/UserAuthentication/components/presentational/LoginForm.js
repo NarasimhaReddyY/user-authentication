@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
 import Formsy from 'formsy-react';
-import { Textfield, SubmitButton } from './index.js';
+import { Textfield, SubmitButton } from '../common/index.js';
 
 class LoginForm extends Component {
   render(){

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Formsy from 'formsy-react';
-import { Textfield, SubmitButton, RadioButton } from './index.js';
+import { Textfield, SubmitButton, RadioButton } from '../common/index.js';
 import _ from 'lodash';
 
 class RegistrationForm extends Component {
