@@ -6,6 +6,7 @@ import _ from 'lodash';
 class RegistrationForm extends Component {
   constructor(props){
     super(props);
+
     this.state = {  
       validationErrors: {}
     },
@@ -37,6 +38,7 @@ class RegistrationForm extends Component {
         <Formsy.Form
           ref="form"
           onInvalidSubmit={this.validateForm}
+          onValidSubmit={this.props.handleOnSubmit}
           validationErrors={this.state.validationErrors}
         >
           <Textfield
