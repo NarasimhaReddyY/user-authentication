@@ -1,18 +1,29 @@
 import React, { Component } from 'react';
 import Formsy from 'formsy-react';
+import { browserHistory } from 'react-router';
 import { Textfield, SubmitButton, RadioButton } from '../common/index.js';
 import _ from 'lodash';
 
 class RegistrationForm extends Component {
   constructor(props){
     super(props);
-
-    this.state = {  
-      validationErrors: {}
-    },
-
     this.resetForm    = this.resetForm.bind(this);
     this.validateForm = this.validateForm.bind(this);
+  };
+
+  componentWillReceiveProps(nextProps){
+    var requestSuccess  = nextProps.requestSuccess;
+    var responseSuccess = nextProps.data.success;
+    var errors          = nextProps.data.errors; 
+
+    if(!!requestSuccess && responseSuccess){
+      browserHistory.push('/login');
+    } else if(!responseSuccess && errors){
+      var validationErrors = _.mapKeys(errors, (value, key) => {
+        return _.camelCase(key);
+      });
+      this.refs.form.updateInputsWithError(validationErrors);
+    }
   };
 
   resetForm(){
@@ -39,7 +50,6 @@ class RegistrationForm extends Component {
           ref="form"
           onInvalidSubmit={this.validateForm}
           onValidSubmit={this.props.handleOnSubmit}
-          validationErrors={this.state.validationErrors}
         >
           <Textfield
             className="form-input"

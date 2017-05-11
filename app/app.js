@@ -20,6 +20,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import configureStore from './store';
 import routes from './routes';
+
 /**
  * Import Main scss file, for global styles
  */

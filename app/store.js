@@ -5,15 +5,21 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { fromJS } from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
+import createSagaMiddleware from  'redux-saga';
 import createReducer from './reducers';
+import rootSaga from './sagas';
 
 const devtools = window.devToolsExtension || (() => noop => noop);
 
 export default function configureStore(initialState = {}, history) {
   // Create the store with middlewares
   // 1. routerMiddleware: Syncs the location/URL path to the state
+
+  const sagaMiddleware = createSagaMiddleware.default();
+
   const middlewares = [
     routerMiddleware(history),
+    sagaMiddleware
   ];
 
   const enhancers = [
@@ -26,6 +32,7 @@ export default function configureStore(initialState = {}, history) {
     fromJS(initialState),
     compose(...enhancers)
   );
+
 
   // Make reducers hot reloadable, see http://mxs.is/googmo
   /* istanbul ignore next */
@@ -40,5 +47,8 @@ export default function configureStore(initialState = {}, history) {
 
   // Initialize it with no other reducers
   store.asyncReducers = {};
+
+  sagaMiddleware.run(rootSaga);
+
   return store;
 }

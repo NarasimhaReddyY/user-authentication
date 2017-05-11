@@ -1,6 +1,8 @@
-export const registrationActionCreaters = (data) => {
+export const registrationActionCreaters = (userData) => {
 	return {
 	  type: 'USER_REGISTRATION_REQUEST',
-	  data: data
+	  payload: {
+	  	user: userData 
+	  },
 	};
 }

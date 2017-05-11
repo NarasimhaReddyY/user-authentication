@@ -5,7 +5,9 @@ import { registrationActionCreaters } from '../../actionCreaters/index.js';
 
 export const mapStateToProps = (state) => {
   return {
-
+    requestInitiated: state.get('authentication').get('registrationRequestInitiated'),
+    requestSuccess: state.get('authentication').get('registrationRequestSuccess'),
+    data: state.get('authentication').get('data'),
   };
 };
 
