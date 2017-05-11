@@ -6,9 +6,9 @@ import { registrationActionCreaters } from '../../actionCreaters/index.js';
 //TODO: This code will be refactored when we use selectors.
 export const mapStateToProps = (state) => {
   return {
-    requestInitiated: state.get('authentication').get('registrationRequestInitiated'),
-    requestSuccess: state.get('authentication').get('registrationRequestSuccess'),
-    data: state.get('authentication').get('data'),
+    requestInitiated: state.get('registration').get('registrationRequestInitiated'),
+    requestSuccess: state.get('registration').get('registrationRequestSuccess'),
+    data: state.get('registration').get('data'),
   };
 };
 

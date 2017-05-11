@@ -6,10 +6,11 @@ const initialState = Immutable.Map({
 	data: {}
 });
 
-export const userAuthenticationReducer = (state = initialState, action) => {
+export const userRegistrationReducer = (state = initialState, action) => {
   switch(action.type) {
   	case 'USER_REGISTRATION_REQUEST_INITIATED': {
   		let newState = state;
+      newState = newState.set('data', {})
   		newState = newState.set('registrationRequestInitiated', true);
   		newState = newState.set('registrationRequestSuccess', false);
   		return newState;

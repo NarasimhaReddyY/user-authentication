@@ -6,3 +6,12 @@ export const registrationActionCreaters = (userData) => {
 	  },
 	};
 }
+
+export const loginActionCreaters = (userData) => {
+	return {
+	  type: 'USER_LOGIN_REQUEST',
+	  payload: {
+	  	user: userData
+	  }
+	}
+};
