@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import RegistrationForm from '../presentational/RegistrationForm.js';
 import { registrationActionCreaters } from '../../actionCreaters/index.js';
 
+//TODO: This code will be refactored when we use selectors.
 export const mapStateToProps = (state) => {
   return {
     requestInitiated: state.get('authentication').get('registrationRequestInitiated'),

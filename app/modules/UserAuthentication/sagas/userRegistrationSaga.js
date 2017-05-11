@@ -8,11 +8,19 @@ function* userRegistrationAction(action) {
     const response = yield call(userRegistrationAPI, action.payload.user);
 
     let payload = {};
+    let user    = response.data.user;
+    let errors  = response.data.errors;
 
-    if(response.data.user){
-      payload = { user: response.data.user, success: true }
-    } else if(response.data.errors) {
-      payload = { errors: response.data.errors, success: false }
+    if(user){
+      payload = { 
+        user: user,
+        success: true
+      }
+    } else if(errors) {
+      payload = { 
+        errors: errors,
+        success: false
+      }
     }
 
     yield put({
