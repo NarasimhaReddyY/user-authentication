@@ -2,12 +2,12 @@ import React,{ Component } from 'react';
 import { browserHistory } from 'react-router';
 import Formsy from 'formsy-react';
 import { Textfield, SubmitButton } from '../common/index.js';
+import { convertSnakeCaseToCamelCase } from '../../../Core/helpers/index.js';
 
 class LoginForm extends Component {
 
 	constructor(props){
 		super(props);
-
 		this.validateForm = this.validateForm.bind(this);
 	}
 
@@ -32,10 +32,7 @@ class LoginForm extends Component {
     if(!!requestSuccess && responseSuccess){
       browserHistory.push('/home');
     } else if(!responseSuccess && errors){
-      var validationErrors = _.mapKeys(errors, (value, key) => {
-        return _.camelCase(key);
-      });
-      this.refs.form.updateInputsWithError(validationErrors);
+      this.refs.form.updateInputsWithError(convertSnakeCaseToCamelCase(errors));
     }
 	};
 

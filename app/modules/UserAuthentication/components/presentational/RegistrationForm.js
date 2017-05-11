@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Formsy from 'formsy-react';
+import _ from 'lodash';
 import { browserHistory } from 'react-router';
 import { Textfield, SubmitButton, RadioButton } from '../common/index.js';
-import _ from 'lodash';
+import { convertSnakeCaseToCamelCase } from '../../../Core/helpers/index.js';
 
 class RegistrationForm extends Component {
   constructor(props){
@@ -19,10 +20,7 @@ class RegistrationForm extends Component {
     if(!!requestSuccess && responseSuccess){
       browserHistory.push('/login');
     } else if(!responseSuccess && errors){
-      var validationErrors = _.mapKeys(errors, (value, key) => {
-        return _.camelCase(key);
-      });
-      this.refs.form.updateInputsWithError(validationErrors);
+      this.refs.form.updateInputsWithError(convertSnakeCaseToCamelCase(errors));
     }
   };
 
@@ -102,18 +100,20 @@ class RegistrationForm extends Component {
             type="password"
             required
           />
+          <div className="form-button-group">
+            <SubmitButton 
+              className="submit-button"
+              name="submit"
+              value="SignUp"
+            />
 
-          <SubmitButton 
-            className="submit-button"
-            name="submit"
-            value="SignUp"
-          />
-
-          <SubmitButton 
-            name="reset-button"
-            value="Reset"
-            handleOnClick={this.resetForm}
-          />
+            <SubmitButton
+              className="reset-button" 
+              name="resetButton"
+              value="Reset"
+              handleOnClick={this.resetForm}
+            />
+          </div>
         </Formsy.Form>
       </div>
     );	

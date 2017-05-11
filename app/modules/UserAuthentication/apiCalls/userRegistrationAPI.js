@@ -4,7 +4,7 @@ import axios from 'axios';
 //Move all api urls to a single place.
 //Refactor this
 export const userRegistrationAPI = (user) => {
-	return axios.post(
+  return axios.post(
    'http://localhost:3001/users', {
     user: {
         first_name: user.firstName,
