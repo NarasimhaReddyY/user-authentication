@@ -30,6 +30,9 @@ class LoginForm extends Component {
     var errors          = nextProps.data.errors; 
 
     if(!!requestSuccess && responseSuccess){
+      //TODO: Need to finalise this pattern.
+      localStorage.setItem('token', nextProps.data.user.api_token);
+
       browserHistory.push('/home');
     } else if(!responseSuccess && errors){
       this.refs.form.updateInputsWithError(convertSnakeCaseToCamelCase(errors));
