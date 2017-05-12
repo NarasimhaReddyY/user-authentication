@@ -11,7 +11,8 @@ import { convertSnakeCaseToCamelCase } from '../../../Core/helpers/index.js';
 class ForgotPasswordForm extends Component{
 	constructor(props){
 		super(props);
-		this.notifyFormError = this.notifyFormError.bind(this);
+
+		this.notifyFormErrors = this.notifyFormErrors.bind(this);
 	}
 
 	notifyFormErrors(data, resetForm, invalidateForm) {
