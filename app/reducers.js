@@ -8,6 +8,7 @@ import { fromJS } from 'immutable';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import { userRegistrationReducer } from './modules/UserAuthentication/reducers/userRegistrationReducer.js';
 import { userLoginReducer } from './modules/UserAuthentication/reducers/userLoginReducer.js';
+import { userForgotPasswordReducer } from './modules/UserAuthentication/reducers/userForgotPasswordReducer.js';
 /*
  * routeReducer
  *
@@ -44,6 +45,7 @@ export default function createReducer(asyncReducers) {
     route: routeReducer,
     registration: userRegistrationReducer,
     login: userLoginReducer,
+    forgotPassword: userForgotPasswordReducer,
     ...asyncReducers,
   });
 }

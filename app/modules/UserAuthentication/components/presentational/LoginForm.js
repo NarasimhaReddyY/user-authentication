@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import { browserHistory } from 'react-router';
+import { browserHistory, Link } from 'react-router';
 import Formsy from 'formsy-react';
 import { Textfield, SubmitButton } from '../common/index.js';
 import { convertSnakeCaseToCamelCase } from '../../../Core/helpers/index.js';
@@ -42,36 +42,41 @@ class LoginForm extends Component {
 
   render(){
   	return(
-  		<div className="login-form">
-  		  <Formsy.Form
-  		    ref="form"
-  		    onInvalidSubmit={this.validateForm}
-  		    onValidSubmit={this.props.handleOnSubmit}
-  		   >
-          <Textfield
-	  		    className="form-input"
-	  		    name="email"
-	  		    title="Email"
-	  		    type="email"
-            validations="isEmail"
-            validationError="Enter a valid email"
-	  		    required
-	  		  />
+      <div>
+        <div className="login-form">
+          <Formsy.Form
+            ref="form"
+            onInvalidSubmit={this.validateForm}
+            onValidSubmit={this.props.handleOnSubmit}
+           >
+            <Textfield
+              className="form-input"
+              name="email"
+              title="Email"
+              type="email"
+              validations="isEmail"
+              validationError="Enter a valid email"
+              required
+            />
 
-	  		  <Textfield
-	  		    className="form-input"
-	  		    name="password"
-	  		    title="Password"
-	  		    type="password"
-	  		    required
-	  		  />
+            <Textfield
+              className="form-input"
+              name="password"
+              title="Password"
+              type="password"
+              required
+            />
 
-	  		  <SubmitButton
-	  		    name="login"
-	  		    value="Login"
-	  		  />
-  		  </Formsy.Form>  		  
-  		</div>
+            <SubmitButton
+              name="login"
+              value="Login"
+            />
+          </Formsy.Form>        
+        </div>
+        <div>
+          <Link to='/forgot-password'>forgot password?</Link>
+        </div>
+      </div>
   	);
   }
 };

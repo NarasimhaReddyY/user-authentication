@@ -23,6 +23,14 @@ export const userLoginReducer = (state = initialState, action) => {
   		newState = newState.set('loginRequestSuccess', true);
   		return newState;
   	}
+    case 'USER_LOGIN_REQUEST_FAILED': {
+      let newState = state;
+
+      newState = newState.set('data', action.payload );
+      newState = newState.set('loginRequestInitiated', false);
+      newState = newState.set('loginRequestSuccess', false);
+      return newState;      
+    }
     default: {
       return state;
     }

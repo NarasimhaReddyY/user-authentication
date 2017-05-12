@@ -15,3 +15,12 @@ export const loginActionCreaters = (userData) => {
 	  }
 	}
 };
+
+export const forgotPasswordActionCreaters = (userData) => {
+	return {
+		type: 'USER_FORGOT_PASSWORD_REQUEST',
+		payload: {
+			email: userData.email
+		}
+	}
+}

@@ -23,6 +23,14 @@ export const userRegistrationReducer = (state = initialState, action) => {
   		newState = newState.set('registrationRequestSuccess', true);
   		return newState;
   	}
+    case 'USER_REGISTRATION_REQUEST_FAILED': {
+      let newState = state;
+
+      newState = newState.set('data', action.payload );
+      newState = newState.set('registrationRequestInitiated', false);
+      newState = newState.set('registrationRequestSuccess', false);
+      return newState;      
+    }
     default: {
       return state;
     }
