@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Formsy from 'formsy-react';
-import _ from 'lodash';
 import { browserHistory, Link } from 'react-router';
 import { Textfield, SubmitButton, RadioButton } from '../common/index.js';
 import { convertSnakeCaseToCamelCase } from '../../../Core/helpers/index.js';
@@ -8,8 +7,8 @@ import { convertSnakeCaseToCamelCase } from '../../../Core/helpers/index.js';
 class RegistrationForm extends Component {
   constructor(props){
     super(props);
-    this.resetForm    = this.resetForm.bind(this);
-    this.validateForm = this.validateForm.bind(this);
+    this.resetForm        = this.resetForm.bind(this);
+    this.notifyFormErrors = this.notifyFormErrors.bind(this);
   };
 
   componentWillReceiveProps(nextProps){
@@ -28,18 +27,15 @@ class RegistrationForm extends Component {
     this.refs.form.reset();
   };
 
-  validateForm(formData){
-    let validationErrors = {};
-    const errorMessage = "Should not be empty";
-    
-    _.forEach(formData, (value, key) => {
-      if(_.isEmpty(value)){
-        validationErrors[key] = errorMessage;
+  notifyFormErrors(data, resetForm, invalidateForm) {
+    let errors = {}
+    this.refs.form.inputs.forEach( (input) => {
+      if(input.showRequired()) {
+      errors[input.props.name] = 'Should not be blank'
       }
-    });
-
-    this.refs.form.updateInputsWithError(validationErrors);
-  };
+    })
+    invalidateForm(errors)
+  }
 
   render(){
     return (
@@ -47,7 +43,7 @@ class RegistrationForm extends Component {
         <div className='input-group'>
           <Formsy.Form
             ref="form"
-            onInvalidSubmit={this.validateForm}
+            onInvalidSubmit={this.notifyFormErrors}
             onValidSubmit={this.props.handleOnSubmit}
           >
             <Textfield

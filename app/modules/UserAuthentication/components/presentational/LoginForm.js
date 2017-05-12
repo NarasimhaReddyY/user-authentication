@@ -8,21 +8,21 @@ class LoginForm extends Component {
 
 	constructor(props){
 		super(props);
-		this.validateForm = this.validateForm.bind(this);
+		this.notifyFormErrors = this.notifyFormErrors.bind(this);
 	}
 
-  validateForm(formData){
-    let validationErrors = {};
-    const errorMessage = "Should not be empty";
-    
-    _.forEach(formData, (value, key) => {
-      if(_.isEmpty(value)){
-        validationErrors[key] = errorMessage;
+  //We can remove this in future.
+  //When formsy-react next version released(current 0.19.2)
+  //https://github.com/christianalfoni/formsy-react/issues/276
+  notifyFormErrors(data, resetForm, invalidateForm) {
+    let errors = {}
+    this.refs.form.inputs.forEach( (input) => {
+      if(input.showRequired()) {
+      errors[input.props.name] = 'Should not be blank'
       }
-    });
-
-    this.refs.form.updateInputsWithError(validationErrors);
-  };
+    })
+    invalidateForm(errors)
+  }
 
 	componentWillReceiveProps(nextProps){
     var requestSuccess  = nextProps.requestSuccess;
@@ -40,13 +40,13 @@ class LoginForm extends Component {
 	};
 
 
-  render(){
+  render(){    
   	return(
       <div>
         <div className="login-form">
           <Formsy.Form
             ref="form"
-            onInvalidSubmit={this.validateForm}
+            onInvalidSubmit={this.notifyFormErrors}
             onValidSubmit={this.props.handleOnSubmit}
            >
             <Textfield

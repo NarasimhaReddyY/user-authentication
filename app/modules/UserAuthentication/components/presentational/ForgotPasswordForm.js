@@ -9,6 +9,20 @@ import { convertSnakeCaseToCamelCase } from '../../../Core/helpers/index.js';
 
 
 class ForgotPasswordForm extends Component{
+	constructor(props){
+		super(props);
+		this.notifyFormError = this.notifyFormError.bind(this);
+	}
+
+	notifyFormErrors(data, resetForm, invalidateForm) {
+    let errors = {}
+    this.refs.form.inputs.forEach( (input) => {
+      if(input.showRequired()) {
+      errors[input.props.name] = 'Should not be blank'
+      }
+    })
+    invalidateForm(errors)
+  }
 
 	componentWillReceiveProps(nextProps){
     var requestSuccess  = nextProps.requestSuccess;
@@ -27,6 +41,7 @@ class ForgotPasswordForm extends Component{
 			<div className='forgot-password-form'>
 			  <Formsy.Form
 			    onValidSubmit={this.props.handleOnSubmit}
+			    onInvalidSubmit={this.notifyFormErrors}
 			    ref="form"
 			  >
           <Textfield
