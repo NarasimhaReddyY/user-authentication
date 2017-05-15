@@ -4,8 +4,8 @@ import { browserHistory } from 'react-router';
 import { connect }from 'react-redux';
 import Formsy from 'formsy-react';
 import { forgotPasswordActionCreaters } from '../../actionCreaters/index.js';
-import { Textfield, SubmitButton } from '../common/index.js';
-import { convertSnakeCaseToCamelCase } from '../../../Core/helpers/index.js';
+import { Textfield, SubmitButton } from '../../../common/components/formsyComponents/index.js';
+import { convertSnakeCaseToCamelCase } from '../../../core/helpers/index.js';
 
 
 class ForgotPasswordForm extends Component{

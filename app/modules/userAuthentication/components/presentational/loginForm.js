@@ -1,8 +1,8 @@
 import React,{ Component } from 'react';
 import { browserHistory, Link } from 'react-router';
 import Formsy from 'formsy-react';
-import { Textfield, SubmitButton } from '../common/index.js';
-import { convertSnakeCaseToCamelCase } from '../../../Core/helpers/index.js';
+import { Textfield, SubmitButton } from '../../../common/components/formsyComponents/index.js';
+import { convertSnakeCaseToCamelCase } from '../../../core/helpers/index.js';
 
 class LoginForm extends Component {
 

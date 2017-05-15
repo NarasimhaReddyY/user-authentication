@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import LoginForm from '../presentational/LoginForm.js';
+import LoginForm from '../presentational/loginForm.js';
 import { loginActionCreaters } from '../../actionCreaters/index.js';
 
 //TODO: This code will be refactored when we use selectors.

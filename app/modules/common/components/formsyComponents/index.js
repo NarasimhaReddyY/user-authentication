@@ -10,12 +10,12 @@ import { HOC } from 'formsy-react';
 /**
  * importing user defined components
  */
-import Input from './Textfield';
-import MultilineInput from './Textarea';
-import Submit from './SubmitButton';
-import Radio from './RadioButton';
-import Check from './CheckBox';
-import File from './File.js';
+import Input from './textfield';
+import MultilineInput from './textarea';
+import Submit from './submitButton';
+import Radio from './radioButton';
+import Check from './checkBox';
+import File from './file.js';
 
 /*eslint-disable */
 

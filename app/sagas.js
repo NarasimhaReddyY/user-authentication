@@ -1,8 +1,8 @@
 import { fork } from 'redux-saga/effects';
 
-import userRegistrationSaga from './modules/UserAuthentication/sagas/userRegistrationSaga.js';
-import userLoginSaga from './modules/UserAuthentication/sagas/userLoginSaga.js';
-import userForgotPasswordSaga from './modules/UserAuthentication/sagas/userForgotPasswordSaga.js';
+import userRegistrationSaga from './modules/userAuthentication/sagas/userRegistrationSaga.js';
+import userLoginSaga from './modules/userAuthentication/sagas/userLoginSaga.js';
+import userForgotPasswordSaga from './modules/userAuthentication/sagas/userForgotPasswordSaga.js';
 
 export default function* rootSaga() {
   yield fork(userRegistrationSaga);

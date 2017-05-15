@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-const CheckBox= ({ className, name, title, value, checked}) => {
+const CheckBox= ({ className, name, title, value, checked }) => {
 	return (
 		<div className={className}>
 		  <input

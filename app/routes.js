@@ -1,15 +1,15 @@
-
+  
 /**
  * Define Routes here
  */
 import React from 'react';
 import { Route } from 'react-router';
-import App from './modules/Core/components/main';
-import Homepage from './modules/Home/components/home';
-import RegistrationFormContainer from './modules/UserAuthentication/components/containers/RegistrationFormContainer.js';
-import LoginFormContainer from './modules/UserAuthentication/components/containers/LoginFormContainer.js';
-import LoginForm from './modules/UserAuthentication/components/presentational/LoginForm';
-import ForgotPasswordForm from './modules/UserAuthentication/components/presentational/ForgotPasswordForm';
+import App from './modules/core/components/main';
+import Homepage from './modules/common/components/home';
+import RegistrationFormContainer from './modules/userAuthentication/components/containers/registrationFormContainer.js';
+import LoginFormContainer from './modules/userAuthentication/components/containers/loginFormContainer.js';
+import LoginForm from './modules/userAuthentication/components/presentational/loginForm';
+import ForgotPasswordForm from './modules/userAuthentication/components/presentational/forgotPasswordForm';
 import _ from 'lodash';
 
 const authenticate = (nextState, replace) => {

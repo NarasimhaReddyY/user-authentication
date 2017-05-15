@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Formsy from 'formsy-react';
 import { browserHistory, Link } from 'react-router';
-import { Textfield, SubmitButton, RadioButton } from '../common/index.js';
-import { convertSnakeCaseToCamelCase } from '../../../Core/helpers/index.js';
+import { Textfield, SubmitButton, RadioButton } from '../../../common/components/formsyComponents/index.js';
+import { convertSnakeCaseToCamelCase } from '../../../core/helpers/index.js';
 
 class RegistrationForm extends Component {
   constructor(props){
