@@ -8,8 +8,7 @@ import App from './modules/core/components/main';
 import Homepage from './modules/common/components/home';
 import RegistrationFormContainer from './modules/userAuthentication/components/containers/registrationFormContainer.js';
 import LoginFormContainer from './modules/userAuthentication/components/containers/loginFormContainer.js';
-import LoginForm from './modules/userAuthentication/components/presentational/loginForm';
-import ForgotPasswordForm from './modules/userAuthentication/components/presentational/forgotPasswordForm';
+import ForgotPasswordFormContainer from './modules/userAuthentication/components/containers/forgotPasswordContainer.js';
 import _ from 'lodash';
 
 const authenticate = (nextState, replace) => {
@@ -24,7 +23,7 @@ export default (
   <Route path="/" component={App}>
     <Route path="registration" component={RegistrationFormContainer} />
   	<Route path="login" component={LoginFormContainer} />
-  	<Route path="forgot-password" component={ForgotPasswordForm} />
+  	<Route path="forgot-password" component={ForgotPasswordFormContainer} />
     <Route path="home" component={Homepage} onEnter={authenticate}/>
   </Route>
 );

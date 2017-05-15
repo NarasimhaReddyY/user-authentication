@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
-import { connect }from 'react-redux';
 import Formsy from 'formsy-react';
 import { forgotPasswordActionCreaters } from '../../actionCreaters/index.js';
 import { Textfield, SubmitButton } from '../../../common/components/formsyComponents/index.js';
@@ -65,21 +64,4 @@ class ForgotPasswordForm extends Component{
 	}
 };
 
-export const mapStateToProps = (state) => {
-	return {
-		requestInitiated: state.get('forgotPassword').get('forgotPasswordRequestInitiated'),
-		requestSuccess: state.get('forgotPassword').get('forgotPasswordRequestSuccess'),
-		data: state.get('forgotPassword').get('data'),
-	}
-}
-
-export const mapDispatchToProps = (dispatch) => {
-	return {
-		handleOnSubmit: bindActionCreators(forgotPasswordActionCreaters, dispatch)
-	}
-}
-
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(ForgotPasswordForm);
+export default ForgotPasswordForm;
