@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
 
-const Textfield = ({ className, title, name, type, getValue, setValue, getErrorMessage }) => {
+const Textfield = ({ className, title, name, type, getValue, setValue, getErrorMessage, isRequired }) => {
   const errorMessage = getErrorMessage();
   const wrapperClassName = `input-group ${className}${errorMessage ? ' invalid' : ''}`;
 
   return (
     <div className={wrapperClassName}>
-      {title && <label htmlFor={name}>{title}</label>}
+      {title && <label htmlFor={name}>{title}<span>{isRequired() ? "*" : null}</span></label>}
       <input
         name={name}
         type={type}

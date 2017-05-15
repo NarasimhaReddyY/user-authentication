@@ -7,8 +7,25 @@ import { convertSnakeCaseToCamelCase } from '../../../core/helpers/index.js';
 class RegistrationForm extends Component {
   constructor(props){
     super(props);
-    this.resetForm        = this.resetForm.bind(this);
-    this.notifyFormErrors = this.notifyFormErrors.bind(this);
+    this.state = {
+      canSubmit: false
+    };
+
+    this.resetForm     = this.resetForm.bind(this);
+    this.enableButton  = this.enableButton.bind(this);
+    this.disableButton = this.disableButton.bind(this);
+  };
+
+  enableButton(){
+    this.setState({ canSubmit: true });
+  }
+
+  disableButton(){
+    this.setState({ canSubmit: false });
+  }
+
+  resetForm(){
+    this.refs.form.reset();
   };
 
   componentWillReceiveProps(nextProps){
@@ -23,19 +40,6 @@ class RegistrationForm extends Component {
     }
   };
 
-  resetForm(){
-    this.refs.form.reset();
-  };
-
-  notifyFormErrors(data, resetForm, invalidateForm) {
-    let errors = {}
-    this.refs.form.inputs.forEach( (input) => {
-      if(input.showRequired()) {
-      errors[input.props.name] = 'Should not be blank'
-      }
-    })
-    invalidateForm(errors)
-  }
 
   render(){
     return (
@@ -43,7 +47,8 @@ class RegistrationForm extends Component {
         <div className='input-group'>
           <Formsy.Form
             ref="form"
-            onInvalidSubmit={this.notifyFormErrors}
+            onInvalid={this.disableButton}
+            onValid={this.enableButton}
             onValidSubmit={this.props.handleOnSubmit}
           >
             <Textfield
@@ -101,6 +106,7 @@ class RegistrationForm extends Component {
               <SubmitButton 
                 className="submit-button"
                 name="submit"
+                disabled={!this.state.canSubmit}
                 value="SignUp"
               />
 

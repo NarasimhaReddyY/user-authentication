@@ -10,17 +10,20 @@ import { convertSnakeCaseToCamelCase } from '../../../core/helpers/index.js';
 class ForgotPasswordForm extends Component{
 	constructor(props){
 		super(props);
-		this.notifyFormErrors = this.notifyFormErrors.bind(this);
+    this.state = {
+      canSubmit: false
+    };
+
+    this.enableButton  = this.enableButton.bind(this);
+    this.disableButton = this.disableButton.bind(this);
 	}
 
-	notifyFormErrors(data, resetForm, invalidateForm) {
-    let errors = {}
-    this.refs.form.inputs.forEach( (input) => {
-      if(input.showRequired()) {
-      errors[input.props.name] = 'Should not be blank'
-      }
-    })
-    invalidateForm(errors);
+  enableButton(){
+    this.setState({ canSubmit: true });
+  }
+
+  disableButton(){
+    this.setState({ canSubmit: false });
   }
 
 	componentWillReceiveProps(nextProps){
@@ -39,9 +42,10 @@ class ForgotPasswordForm extends Component{
 		return(
 			<div className='forgot-password-form'>
 			  <Formsy.Form
-			    onValidSubmit={this.props.handleOnSubmit}
-			    onInvalidSubmit={this.notifyFormErrors}
 			    ref="form"
+          onInvalid={this.disableButton}
+          onValid={this.enableButton}
+          onValidSubmit={this.props.handleOnSubmit}
 			  >
           <Textfield
           	className="form-input"
@@ -54,6 +58,7 @@ class ForgotPasswordForm extends Component{
           />
 					<SubmitButton 
 						className="submit-button"
+            disabled={!this.state.canSubmit}
 						name="submit"
 						value="Submit"
 					/>

@@ -8,20 +8,20 @@ class LoginForm extends Component {
 
 	constructor(props){
 		super(props);
-		this.notifyFormErrors = this.notifyFormErrors.bind(this);
+    this.state = {
+      canSubmit: false
+    };
+
+    this.enableButton  = this.enableButton.bind(this);
+    this.disableButton = this.disableButton.bind(this);
 	}
 
-  //We can remove this in future.
-  //When formsy-react next version released(current 0.19.2)
-  //https://github.com/christianalfoni/formsy-react/issues/276
-  notifyFormErrors(data, resetForm, invalidateForm) {
-    let errors = {}
-    this.refs.form.inputs.forEach( (input) => {
-      if(input.showRequired()) {
-      errors[input.props.name] = 'Should not be blank'
-      }
-    })
-    invalidateForm(errors)
+  enableButton(){
+    this.setState({ canSubmit: true });
+  }
+
+  disableButton(){
+    this.setState({ canSubmit: false });
   }
 
 	componentWillReceiveProps(nextProps){
@@ -46,7 +46,8 @@ class LoginForm extends Component {
         <div className="login-form">
           <Formsy.Form
             ref="form"
-            onInvalidSubmit={this.notifyFormErrors}
+            onInvalid={this.disableButton}
+            onValid={this.enableButton}
             onValidSubmit={this.props.handleOnSubmit}
            >
             <Textfield
@@ -70,6 +71,7 @@ class LoginForm extends Component {
             <SubmitButton
               name="login"
               value="Login"
+              disabled={!this.state.canSubmit}
             />
           </Formsy.Form>        
         </div>
