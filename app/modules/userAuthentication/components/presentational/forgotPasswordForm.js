@@ -10,7 +10,6 @@ import { convertSnakeCaseToCamelCase } from '../../../core/helpers/index.js';
 class ForgotPasswordForm extends Component{
 	constructor(props){
 		super(props);
-
 		this.notifyFormErrors = this.notifyFormErrors.bind(this);
 	}
 
@@ -21,7 +20,7 @@ class ForgotPasswordForm extends Component{
       errors[input.props.name] = 'Should not be blank'
       }
     })
-    invalidateForm(errors)
+    invalidateForm(errors);
   }
 
 	componentWillReceiveProps(nextProps){

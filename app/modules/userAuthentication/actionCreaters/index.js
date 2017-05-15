@@ -24,3 +24,13 @@ export const forgotPasswordActionCreaters = (userData) => {
 		}
 	}
 }
+
+export const resetPasswordActionCreaters = (userData) => {
+	return {
+		type: 'USER_RESET_PASSWORD_REQUEST',
+		payload: {
+			password: userData.password,
+			confirmPassword: userData.confirmPassword
+		}
+	}
+}
