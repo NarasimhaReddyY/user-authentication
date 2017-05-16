@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 
-const File = ({ className, title, name, getErrorMessage }) => {
+const File = (props) => {
+  const { className, title, name, getErrorMessage } = props;
   const errorMessage = getErrorMessage();
   const wrapperClassName = `input-group ${className}${errorMessage ? ' invalid' : ''}`;
 

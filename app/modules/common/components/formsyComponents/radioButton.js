@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
 
-const RadioButton = ({ className, name, title, value, checked}) => {
+const RadioButton = (props) => {
+	const  { className, name, title, value, checked } = props;
+	
 	return (
 		<div className={className}>
 		  <input

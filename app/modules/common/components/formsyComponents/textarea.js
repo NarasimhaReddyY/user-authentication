@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 
-const Textarea = ({ className, title, name, getValue, setValue, getErrorMessage }) => {
+const Textarea = (props) => {
+  const { className, title, name, getValue, setValue, getErrorMessage } = props;
   const errorMessage = getErrorMessage();
   const wrapperClassName = `input-group ${className}${errorMessage ? ' invalid' : ''}`;
 

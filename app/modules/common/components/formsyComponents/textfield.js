@@ -1,6 +1,18 @@
 import React, { PropTypes } from 'react';
 
-const Textfield = ({ className, title, name, type, getValue, setValue, getErrorMessage, isRequired }) => {
+const Textfield = (props) => {
+  
+  const {
+    className,
+    title,
+    name,
+    type,
+    getValue,
+    setValue,
+    getErrorMessage,
+    isRequired
+  } = props;
+
   const errorMessage = getErrorMessage();
   const wrapperClassName = `input-group ${className}${errorMessage ? ' invalid' : ''}`;
 

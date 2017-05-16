@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
 
-const SubmitButton = ({ className, name, value, disabled, handleOnClick }) => {
+const SubmitButton = (props) => {
+	const { className, name, value, disabled, handleOnClick } = props;
+	
 	return (
 		<div className={className}>
 			<input
