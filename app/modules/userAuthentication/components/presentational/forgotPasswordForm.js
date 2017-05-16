@@ -3,8 +3,14 @@ import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
 import Formsy from 'formsy-react';
 import { forgotPasswordActionCreaters } from '../../actionCreaters/index.js';
-import { Textfield, SubmitButton } from '../../../common/components/formsyComponents/index.js';
-import { convertSnakeCaseToCamelCase } from '../../../core/helpers/index.js';
+import {
+  convertSnakeCaseToCamelCase,
+  redirectTo
+} from '../../../core/helpers/index.js';
+import {
+  Textfield,
+  SubmitButton
+} from '../../../common/components/formsyComponents/index.js';
 
 
 class ForgotPasswordForm extends Component{
@@ -27,12 +33,12 @@ class ForgotPasswordForm extends Component{
   }
 
 	componentWillReceiveProps(nextProps){
-    var requestSuccess  = nextProps.requestSuccess;
-    var responseSuccess = nextProps.data.success;
-    var errors          = nextProps.data.errors; 
+    const { requestSuccess, data } = nextProps;
+    const responseSuccess = data.success;
+    const errors = data.errors;
 
     if(!!requestSuccess && responseSuccess){
-     	browserHistory.push('/reset-password');
+     	redirectTo('/reset-password');
     } else if(!responseSuccess && errors){
       this.refs.form.updateInputsWithError(convertSnakeCaseToCamelCase(errors));
     }

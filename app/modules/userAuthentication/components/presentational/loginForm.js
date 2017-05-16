@@ -1,8 +1,12 @@
 import React,{ Component } from 'react';
-import { browserHistory, Link } from 'react-router';
+import { Link } from 'react-router';
 import Formsy from 'formsy-react';
 import { Textfield, SubmitButton } from '../../../common/components/formsyComponents/index.js';
-import { convertSnakeCaseToCamelCase } from '../../../core/helpers/index.js';
+import {
+  convertSnakeCaseToCamelCase,
+  setToken,
+  redirectTo
+} from '../../../core/helpers/index.js';
 
 class LoginForm extends Component {
 
@@ -25,16 +29,14 @@ class LoginForm extends Component {
   }
 
 	componentWillReceiveProps(nextProps){
-    var requestSuccess  = nextProps.requestSuccess;
-    var responseSuccess = nextProps.data.success;
-    var errors          = nextProps.data.errors; 
+    const { requestSuccess, data } = nextProps;
+    const responseSuccess = data.success;
+    const errors = data.errors;
 
     if(!!requestSuccess && responseSuccess){
-      //TODO: Need to finalise this pattern.
-      localStorage.setItem('token', nextProps.data.user.api_token);
-
-      browserHistory.push('/home');
-    } else if(!responseSuccess && errors){
+      setToken(data.user.api_token);
+      redirectTo("/home");
+    } else if(!data.success && data.errors){
       this.refs.form.updateInputsWithError(convertSnakeCaseToCamelCase(errors));
     }
 	};

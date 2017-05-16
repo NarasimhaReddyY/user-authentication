@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import Formsy from 'formsy-react';
-import { browserHistory, Link } from 'react-router';
-import { Textfield, SubmitButton, RadioButton } from '../../../common/components/formsyComponents/index.js';
-import { convertSnakeCaseToCamelCase } from '../../../core/helpers/index.js';
+import { Link } from 'react-router';
+import {
+  Textfield,
+  SubmitButton,
+  RadioButton
+} from '../../../common/components/formsyComponents/index.js';
+
+import {
+  convertSnakeCaseToCamelCase,
+  redirectTo
+} from '../../../core/helpers/index.js';
 
 class RegistrationForm extends Component {
   constructor(props){
@@ -29,12 +37,12 @@ class RegistrationForm extends Component {
   };
 
   componentWillReceiveProps(nextProps){
-    var requestSuccess  = nextProps.requestSuccess;
-    var responseSuccess = nextProps.data.success;
-    var errors          = nextProps.data.errors; 
+    const { requestSuccess, data } = nextProps;
+    const responseSuccess = data.success;
+    const errors = data.errors;
 
     if(!!requestSuccess && responseSuccess){
-      browserHistory.push('/login');
+      redirectTo('/login');
     } else if(!responseSuccess && errors){
       this.refs.form.updateInputsWithError(convertSnakeCaseToCamelCase(errors));
     }

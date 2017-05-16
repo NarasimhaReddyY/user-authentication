@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { browserHistory } from 'react-router';
 
 export const convertSnakeCaseToCamelCase = (json) =>{
   let validationErrors = _.mapKeys(json, (value, key) => {
@@ -6,4 +7,12 @@ export const convertSnakeCaseToCamelCase = (json) =>{
   });
 
 	return validationErrors;
+};
+
+export const setToken = (token) => {
+	localStorage.setItem('token', token);
+};
+
+export const redirectTo = (pathName) => {
+	browserHistory.push(pathName);
 };

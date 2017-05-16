@@ -1,8 +1,13 @@
 import React,{ Component } from 'react';
-import { browserHistory, Link } from 'react-router';
+import { Link } from 'react-router';
 import Formsy from 'formsy-react';
-import { Textfield, SubmitButton } from '../../../common/components/formsyComponents/index.js';
+import { redirectTo } from '../../../core/helpers/index.js';
+import {
+  Textfield,
+  SubmitButton
+} from '../../../common/components/formsyComponents/index.js';
 
+ 
 class ResetPasswordForm extends Component {
 
 	constructor(props){
@@ -25,12 +30,12 @@ class ResetPasswordForm extends Component {
   }
 
 	componentWillReceiveProps(nextProps){
-    var requestSuccess  = nextProps.requestSuccess;
-    var responseSuccess = nextProps.data.success;
-    var errors          = nextProps.data.errors; 
+    const { requestSuccess, data } = nextProps;
+    const responseSuccess = data.success;
+    const errors = data.errors;
 
     if(!!requestSuccess && responseSuccess){
-      browserHistory.push('/home');
+      redirectTo('/home');
     } else if(!responseSuccess && errors){
       this.refs.form.updateInputsWithError(errors);
     }
