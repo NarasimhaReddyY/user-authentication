@@ -1,74 +1,40 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
-import { browserHistory } from 'react-router';
-import Formsy from 'formsy-react';
-import { forgotPasswordActionCreaters } from '../../actionCreaters/index.js';
+import FormWithSubmitButton from './formWithSubmitButton.js';
+import { forgotPasswordFormPayload } from '../../../core/helpers/formInputPayload.js';
 import {
-  convertSnakeCaseToCamelCase,
-  redirectTo
+  redirectTo,
+  isResponseSuccess,
+  isAnyErrors
 } from '../../../core/helpers/index.js';
-import {
-  Textfield,
-  SubmitButton
-} from '../../../common/components/formsyComponents/index.js';
-
 
 class ForgotPasswordForm extends Component{
 	constructor(props){
 		super(props);
     this.state = {
-      canSubmit: false
+      errors: {}
     };
-
-    this.enableButton  = this.enableButton.bind(this);
-    this.disableButton = this.disableButton.bind(this);
 	}
 
-  enableButton(){
-    this.setState({ canSubmit: true });
-  }
-
-  disableButton(){
-    this.setState({ canSubmit: false });
-  }
-
 	componentWillReceiveProps(nextProps){
-    const { requestSuccess, data } = nextProps;
-    const responseSuccess = data.success;
-    const errors = data.errors;
-
-    if(!!requestSuccess && responseSuccess){
-     	redirectTo('/reset-password');
-    } else if(!responseSuccess && errors){
-      this.refs.form.updateInputsWithError(convertSnakeCaseToCamelCase(errors));
+    if (isResponseSuccess(nextProps)) {
+      redirectTo('/reset-password');
+    } else if(isAnyErrors(nextProps)){
+      this.setState({ errors: nextProps.data.errors});
+    } else {
+      this.setState({ errors: {}});
     }
 	};
 
 	render(){
 		return(
 			<div className='forgot-password-form'>
-			  <Formsy.Form
-			    ref="form"
-          onInvalid={this.disableButton}
-          onValid={this.enableButton}
-          onValidSubmit={this.props.handleOnSubmit}
-			  >
-          <Textfield
-          	className="form-input"
-            name="email"
-            title="Email"
-            type="email"
-            validations="isEmail"
-            validationError="Enter a valid email"
-            required
-          />
-					<SubmitButton 
-						className="submit-button"
-            disabled={!this.state.canSubmit}
-						name="submit"
-						value="Submit"
-					/>
-			  </Formsy.Form>
+        <FormWithSubmitButton
+          handleOnSubmit={this.props.handleOnSubmit}
+          errors={this.state.errors}
+          submitButtonName="submit"
+          submitButtonValue="Submit"
+          data={forgotPasswordFormPayload}
+        />
 			</div>
 		);
 	}

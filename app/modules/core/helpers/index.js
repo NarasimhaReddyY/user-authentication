@@ -16,3 +16,11 @@ export const setToken = (token) => {
 export const redirectTo = (pathName) => {
 	browserHistory.push(pathName);
 };
+
+export const isResponseSuccess = (response) => {
+	return (!!response.requestSuccess && response.data.success);
+}
+
+export const isAnyErrors = (response) => {
+	return (!response.data.success && response.data.errors);
+};
