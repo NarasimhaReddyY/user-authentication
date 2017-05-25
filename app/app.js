@@ -19,6 +19,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import configureStore from './store';
+import routes from './routes';
 
 /**
  * Import Main scss file, for global styles
@@ -56,30 +57,13 @@ import { selectLocationState } from './selectors';
 const history = syncHistoryWithStore(browserHistory, store, {
   selectLocationState: selectLocationState(),
 });
-/**
- * Set up the router, wrapping all Routes in the App component
- */
-import App from './modules/Core/components/main';
-import createRoutes from './routes';
-const rootRoute = {
-  component: App,
-  childRoutes: createRoutes(),
-};
-
 
 const render = () => {
   ReactDOM.render(
     <Provider store={store}>
-      <Router
-        history={history}
-        routes={rootRoute}
-        render={
-
-          //  Scroll to top when going to a new page, imitating default browser
-          //  behaviour
-          applyRouterMiddleware(useScroll())
-        }
-      />
+      <Router history={history}>
+        {routes}
+      </Router>
     </Provider>,
     document.getElementById('app')
   );
